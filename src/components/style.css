@@ -1,0 +1,119 @@
+.input-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust the height as needed */
+}
+
+.input-text input {
+  /* Add additional styles for the input if needed */
+}
+
+.input-text p {
+  /* Add additional styles for the paragraph if needed */
+}
+.task-input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .task-input {
+    margin-right: 5px;
+  }
+  
+  .add-task-button {
+    margin-left: 5px;
+    border: none;
+    height: 50px;
+    background-color: rgb(158, 255, 158);
+  }
+.span-span {
+    padding-right: 5px;
+}  
+.done-done {
+    margin-right: 5px;
+}
+.delete-delete {
+    margin-right: 5px;
+}
+.error-message {
+  position: fixed;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background-color: rgba(255, 0, 0, 0.7); 
+  color: white; 
+  padding: 10px 20px;
+  border-radius: 5px; 
+  font-size: 16px; 
+  z-index: 9999; 
+}
+.buttons-delete {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}
+input.task-input {
+  background-color: white;
+  height: 50px;
+  border: 1px solid rgb(158, 255, 158);
+  outline: none; /* Remove focus outline */
+}
+.button-move-up {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(143, 183, 143);
+  color: white;
+}
+.button-move-down {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(74, 88, 74);
+  color: white;
+}
+.button-delete-on {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(218, 7, 0);
+  color: white;
+}
+.button-edit-on {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(255, 255, 129);
+  color: rgb(52, 52, 52);
+}
+.button-undo-done-on {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(0, 60, 0);
+  color: white;
+}
+.button-delete-all {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(170, 77, 74);
+  color: white;
+}
+.button-delete-all-done {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(170, 77, 74);
+  color: white;
+}
+.button-delete-all-checked {
+  margin-left: 5px;
+  border: none;
+  height: 50px;
+  background-color: rgb(170, 77, 74);
+  color: white;
+}
+
