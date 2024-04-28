@@ -150,16 +150,12 @@ function InputComponent() {
                     <button className='button-undo-done-on' onClick={() => toggleDone(index)}>Done</button>
                     <button className='button-delete-on' onClick={() => deleteTask(index)}>Delete</button>
                     <button className='button-edit-on' onClick={() => editTask(index)}>Edit</button>
-                    {task.checked && (
-                      <>
                         {index > 0 && (
                           <button className='button-move-up' onClick={() => moveTaskUp(index)}>Move Up</button>
                         )}
                         {index < tasks.length - 1 && (
                           <button className='button-move-down' onClick={() => moveTaskDown(index)}>Move Down</button>
                         )}
-                      </>
-                    )}
                 </div>
               </>
             )}
