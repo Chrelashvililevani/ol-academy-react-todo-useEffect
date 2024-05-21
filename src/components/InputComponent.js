@@ -8,7 +8,6 @@ function InputComponent() {
   const [checkedTasks, setCheckedTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
-
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -28,7 +27,7 @@ function InputComponent() {
       return;
     }
 
-    setTasks([...tasks, { text: inputValue, done: false }]);
+    setTasks([...tasks, { text: inputValue, done: false, checked: false }]);
     setInputValue('');
     setErrorMessage('');
   };
@@ -66,12 +65,6 @@ function InputComponent() {
   };
 
   const handleCheckboxChange = (index) => {
-    if (checkedTasks.includes(index)) {
-      setCheckedTasks(checkedTasks.filter(item => item !== index));
-    } else {
-      setCheckedTasks([...checkedTasks, index]);
-    }
-
     const updatedTasks = tasks.map((task, i) => {
       if (i === index) {
         return { ...task, checked: !task.checked };
@@ -79,6 +72,12 @@ function InputComponent() {
       return task;
     });
     setTasks(updatedTasks);
+
+    if (checkedTasks.includes(index)) {
+      setCheckedTasks(checkedTasks.filter(item => item !== index));
+    } else {
+      setCheckedTasks([...checkedTasks, index]);
+    }
   };
 
   const deleteCheckedTasks = () => {
@@ -96,21 +95,22 @@ function InputComponent() {
   };
 
   const moveTaskUp = (index) => {
+    if (index === 0) return;
     const updatedTasks = [...tasks];
     const temp = updatedTasks[index];
     updatedTasks[index] = updatedTasks[index - 1];
     updatedTasks[index - 1] = temp;
     setTasks(updatedTasks);
   };
-  
+
   const moveTaskDown = (index) => {
+    if (index === tasks.length - 1) return;
     const updatedTasks = [...tasks];
     const temp = updatedTasks[index];
     updatedTasks[index] = updatedTasks[index + 1];
     updatedTasks[index + 1] = temp;
     setTasks(updatedTasks);
   };
-  
 
   return (
     <div className='input-text'>
@@ -129,7 +129,7 @@ function InputComponent() {
           <li key={index} style={{ textDecoration: task.done ? 'line-through' : 'none' }}>
             <input
               type="checkbox"
-              checked={task.checked || checkedTasks.includes(index)}
+              checked={task.checked}
               onChange={() => handleCheckboxChange(index)}
             />
             {editIndex === index ? (
@@ -147,15 +147,15 @@ function InputComponent() {
             ) : (
               <>
                 <div className="task-buttons">
-                    <button className='button-undo-done-on' onClick={() => toggleDone(index)}>Done</button>
-                    <button className='button-delete-on' onClick={() => deleteTask(index)}>Delete</button>
-                    <button className='button-edit-on' onClick={() => editTask(index)}>Edit</button>
-                        {index > 0 && (
-                          <button className='button-move-up' onClick={() => moveTaskUp(index)}>Move Up</button>
-                        )}
-                        {index < tasks.length - 1 && (
-                          <button className='button-move-down' onClick={() => moveTaskDown(index)}>Move Down</button>
-                        )}
+                  <button className='button-undo-done-on' onClick={() => toggleDone(index)}>Done</button>
+                  <button className='button-delete-on' onClick={() => deleteTask(index)}>Delete</button>
+                  <button className='button-edit-on' onClick={() => editTask(index)}>Edit</button>
+                  {index > 0 && (
+                    <button className='button-move-up' onClick={() => moveTaskUp(index)}>Move Up</button>
+                  )}
+                  {index < tasks.length - 1 && (
+                    <button className='button-move-down' onClick={() => moveTaskDown(index)}>Move Down</button>
+                  )}
                 </div>
               </>
             )}
@@ -163,10 +163,10 @@ function InputComponent() {
         ))}
       </ul>
       {errorMessage && (
-          <div className="error-message">
-            {errorMessage}
-          </div>
-        )}
+        <div className="error-message">
+          {errorMessage}
+        </div>
+      )}
       {tasks.length > 0 && (
         <div className='buttons-delete'>
           <button className='button-delete-all-checked' onClick={deleteCheckedTasks}>Delete Checked Tasks</button>
